@@ -6,12 +6,14 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 
 const { Title } = Typography;
-
 const LIMIT = 10;
 
 const PostsList = () => {
   const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState();
+  const [totalCount, setTotalCount] = useState(0);
+
+  const handlePageChange = (newPage) => setPage(newPage);
+
   const {
     isLoading,
     data: posts,
@@ -22,12 +24,11 @@ const PostsList = () => {
       LIMIT
     );
     setTotalCount(totalCount);
+
     return response;
   });
 
-  if (error) {
-    return <ErrorResult errorMessage={error.message} />;
-  }
+  if (error) return <ErrorResult errorMessage={error.message} />;
 
   return (
     <>
@@ -46,9 +47,7 @@ const PostsList = () => {
               dataSource={posts}
               renderItem={(post) => <PostPreview post={post} />}
               pagination={{
-                onChange: (page) => {
-                  setPage(page);
-                },
+                onChange: handlePageChange,
                 current: page,
                 pageSize: LIMIT,
                 total: +totalCount,

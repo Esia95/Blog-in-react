@@ -2,7 +2,7 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Row, Skeleton, Space } from "antd";
 import { ErrorResult } from "components";
 import { showErrorNotification, showSuccessNotification } from "helpers";
-import { EditPostModel } from "pages/PostsList/components";
+import { EditPostModal } from "pages/PostDetails/components";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import postService from "services/post";
@@ -29,7 +29,7 @@ const PostDetails = () => {
         queryClient.invalidateQueries(["post", postId]);
       },
       onError: () => {
-        showErrorNotification("Problem with likes updated");
+        showErrorNotification("Problem with likes update");
       },
     }
   );
@@ -55,17 +55,17 @@ const PostDetails = () => {
                 key="likesCount"
                 icon={<LikeOutlined />}
                 disabled={isLoading || isLoadingAfterUpdate}
-                onClick={() => handleLike(post)}
+                onClick={handleLike}
               />
               <Button
                 type="link"
                 key="dislikesCount"
                 icon={<DislikeOutlined />}
                 disabled={isLoading || isLoadingAfterUpdate}
-                onClick={() => handleDislike(post)}
+                onClick={handleDislike}
               />
             </Space>,
-            <EditPostModel />,
+            <EditPostModal />,
           ]}
         >
           <Skeleton loading={isLoading} active title paragraph={{ rows: 10 }}>
