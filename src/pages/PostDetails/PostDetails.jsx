@@ -2,10 +2,11 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Row, Skeleton, Space } from "antd";
 import { ErrorResult } from "components";
 import { showErrorNotification, showSuccessNotification } from "helpers";
-import { EditPostModal } from "pages/PostDetails/components";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import postService from "services/post";
+
+import { EditPostModal } from "./components";
 
 const { Meta } = Card;
 
