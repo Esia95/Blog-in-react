@@ -4,7 +4,7 @@ import { useForm } from "antd/es/form/Form";
 import { PostForm } from "components";
 import { useState } from "react";
 
-const EditPostModal = () => {
+const EditPostModal = ({ disabled }) => {
   const [open, setOpen] = useState(false);
   const [form] = useForm();
 
@@ -13,12 +13,12 @@ const EditPostModal = () => {
   return (
     <>
       <Button
-        type="primary"
+        type="link"
         icon={<EditOutlined />}
+        disabled={disabled}
         onClick={toggleModalVisibility}
-      >
-        Edit post
-      </Button>
+      />
+
       <Modal
         open={open}
         onCancel={toggleModalVisibility}
