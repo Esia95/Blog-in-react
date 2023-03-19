@@ -23,7 +23,7 @@ const PostsList = () => {
       page,
       LIMIT
     );
-    setTotalCount(totalCount);
+    setTotalCount(+totalCount);
 
     return response;
   });
@@ -50,7 +50,7 @@ const PostsList = () => {
                 onChange: handlePageChange,
                 current: page,
                 pageSize: LIMIT,
-                total: +totalCount,
+                totalCount,
               }}
             />
           </Col>
